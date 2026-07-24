@@ -25,7 +25,6 @@ final class VoiceProcessor {
         geminiClient = GeminiClient(
             apiKey: GeneratedSecrets.geminiAPIKey,
             baseUrl: "https://generativelanguage.googleapis.com/v1beta/models/",
-            httpClient: HttpClientFactoryKt.createHttpClient(),
             onLog: { message in print("[GeminiClient] \(message)") },
             onNonFatal: { error in print("[GeminiClient] non-fatal: \(error)") }
         )

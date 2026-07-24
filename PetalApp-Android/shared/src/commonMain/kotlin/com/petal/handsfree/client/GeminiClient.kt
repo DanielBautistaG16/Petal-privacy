@@ -21,6 +21,17 @@ class GeminiClient(
     private val onNonFatal: (Throwable) -> Unit = {}
 ) {
 
+    // Default parameter values aren't exposed across the Kotlin/Native ObjC
+    // bridge, so Swift callers (VoiceProcessor.swift) can't omit httpClient —
+    // this secondary constructor gives them an explicit entry point that
+    // builds the platform HttpClient internally instead.
+    constructor(
+        apiKey: String,
+        baseUrl: String,
+        onLog: (String) -> Unit,
+        onNonFatal: (Throwable) -> Unit
+    ) : this(apiKey, baseUrl, createHttpClient(), onLog, onNonFatal)
+
     companion object {
         // gemini-2.0-flash-lite: fast, free, low latency — ideal for voice commands
         private const val GEMINI_MODEL = "gemini-2.0-flash-lite"

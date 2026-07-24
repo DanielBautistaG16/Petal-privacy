@@ -52,6 +52,14 @@ jobs:
       - name: Install XcodeGen
         run: brew install xcodegen
 
+      - name: Generate secrets
+        # Must run before `xcodegen generate` — it scans PetalHandsfree/ to
+        # build the project's file list, so GeneratedSecrets.swift has to
+        # already exist on disk or it's silently left out of the target.
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: iosApp/Scripts/generate_secrets.sh
+
       - name: Generate Xcode project
         run: |
           cd iosApp
