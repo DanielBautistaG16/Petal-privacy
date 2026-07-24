@@ -1,8 +1,7 @@
 package com.petal.handsfree.utils
 
-import platform.Foundation.NSCharacterSet
+import io.ktor.http.encodeURLParameter
 import platform.Foundation.NSURL
-import platform.Foundation.stringByAddingPercentEncodingWithAllowedCharacters
 import platform.UIKit.UIApplication
 
 /**
@@ -13,9 +12,7 @@ import platform.UIKit.UIApplication
 @Suppress("DEPRECATION")
 class IosMapLauncher : MapLauncher {
 
-    private fun encode(destination: String): String =
-        destination.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet)
-            ?: destination
+    private fun encode(destination: String): String = destination.encodeURLParameter()
 
     private fun canOpen(urlString: String): Boolean {
         val url = NSURL.URLWithString(urlString) ?: return false
