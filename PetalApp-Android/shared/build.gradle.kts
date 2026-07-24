@@ -39,6 +39,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(libs.ktor.client.okhttp)
+                implementation(libs.androidx.core.ktx)
             }
         }
         val iosX64Main by getting
