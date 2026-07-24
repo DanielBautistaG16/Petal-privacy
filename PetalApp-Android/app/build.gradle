@@ -3,9 +3,17 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
-    // Firebase
-    id 'com.google.gms.google-services'
-    id 'com.google.firebase.crashlytics'
+    // Firebase — applied conditionally below (requires google-services.json,
+    // which is gitignored and absent in CI's debug/test build).
+    id 'com.google.gms.google-services' apply false
+    id 'com.google.firebase.crashlytics' apply false
+}
+
+// Firebase is optional local/release config, not a hard build requirement —
+// CI's `build` job (test + assembleDebug) has no google-services.json.
+if (file('google-services.json').exists()) {
+    apply plugin: 'com.google.gms.google-services'
+    apply plugin: 'com.google.firebase.crashlytics'
 }
 
 def localProperties = new Properties()
