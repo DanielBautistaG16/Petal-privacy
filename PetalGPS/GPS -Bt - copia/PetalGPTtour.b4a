@@ -1,0 +1,267 @@
+﻿Build1=Default,anywheresoftware.b4a.samples.gps
+File1=1.bal
+File10=ValenciaGPTtourlogo.jpg
+File2=2.bal
+File3=arrive in style header.png
+File4=bici2.jpg
+File5=Logo transparent.png
+File6=Logo white BG.png
+File7=logobt.jpg
+File8=petal2.png
+File9=search bar.png
+FileGroup1=Default Group
+FileGroup10=Default Group
+FileGroup2=Default Group
+FileGroup3=Default Group
+FileGroup4=Default Group
+FileGroup5=Default Group
+FileGroup6=Default Group
+FileGroup7=Default Group
+FileGroup8=Default Group
+FileGroup9=Default Group
+Group=Default Group
+Library1=core
+Library2=gps
+Library3=phone
+Library4=randomaccessfile
+Library5=runtimepermissions
+Library6=serial
+Library7=xcustomlistview
+Library8=xui views
+Library9=audio
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="4" />~\n~<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="31"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~
+Module1=AsyncStreamsText
+Module2=Starter
+NumberOfFiles=10
+NumberOfLibraries=9
+NumberOfModules=2
+Version=13.1
+@EndOfDesignText@
+#Region Module Attributes
+	#FullScreen: true
+	#IncludeTitle: false
+	#ApplicationLabel: PetalAPP
+	#BridgeLogger:true
+	#VersionCode: 1
+	#VersionName: 
+	#SupportedOrientations: unspecified
+#End Region
+
+Sub Process_Globals
+	Dim GPS1 As GPS
+	Private audioStreamer As AudioStreamer 'Para capturar y procesar audio
+
+End Sub
+
+Sub Globals
+	Dim lblLon As Label
+	Dim lblLat As Label
+	Dim lblSpeed As Label
+	Dim lblSatellites As Label
+	
+	Dim btnConnect As Button
+	Dim progressBar1,progressBar2 As ProgressBar
+	Dim lblStatus As Label
+	Dim lblMessage As Label
+	Private rp As RuntimePermissions
+	Private B4XImageView2 As B4XImageView
+	Private b4xSwitch1 As B4XSwitch
+	
+	Private recButton As Button
+	Private stopButton As Button
+	Private filterLabel As Label
+	
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	If FirstTime Then
+		GPS1.Initialize("GPS")
+		Log("GPS")
+	End If
+	
+	
+	Activity.LoadLayout("1")
+	Activity.LoadLayout("2")
+    
+	' Inicializamos el AudioStreamer para que use el micrófono
+	audioStreamer.Initialize("audioStreamer", 44100, True, 16, 1)
+    
+	' Aquí puedes aplicar alguna técnica simple de preprocesamiento del audio
+	' Por ejemplo, puedes aplicar una reducción básica de ruido simulada o preprocesar el audio
+    
+	recButton.Initialize("recButton")
+	stopButton.Initialize("stopButton")
+	filterLabel.Initialize("filterLabel")
+	
+	recButton.Text = "Grabar"
+	stopButton.Text = "Detener"
+	filterLabel.Text = "Preparado para grabar audio"
+End Sub
+
+Sub Activity_Resume
+	If GPS1.GPSEnabled = False Then
+		ToastMessageShow("Please enable the GPS device.", True)
+		StartActivity(GPS1.LocationSettingsIntent) 'Will open the relevant settings screen.
+	Else
+		GPS1.Start(0, 0) 'Listen to GPS with no filters.
+		
+	End If
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+	GPS1.Stop
+End Sub
+
+Sub GPS_LocationChanged (Location1 As Location)
+	lblLat.Text = "Lat = " & Location1.ConvertToMinutes(Location1.Latitude)
+	lblLon.Text = "Lon = " & Location1.ConvertToMinutes(Location1.Longitude)
+'	lblSpeed.Text = "Speed = " & Location1.Speed
+'	lblSpeed.Text = NumberFormat(1.60934*60/25* Location1.Speed,2,0)&" Km/h"
+	lblSpeed.Text = NumberFormat(1.60934*60/25* Location1.Speed,2,0)
+End Sub
+
+Sub GPS_UserEnabled (Enabled As Boolean)
+	ToastMessageShow("GPS device enabled = " & Enabled, True)
+End Sub
+
+Sub GPS_GnssStatus (Satellites As List)
+	lblSatellites.Text = "Satellites:" & CRLF
+	For i = 0 To Satellites.Size - 1
+		Dim Satellite As GPSSatellite
+		Satellite = Satellites.Get(i)
+		lblSatellites.Text = lblSatellites.Text & CRLF & Satellite.Prn & _
+			" " & Satellite.Snr & " " & Satellite.UsedInFix & " " & Satellite.Azimuth _ 
+			& " " & Satellite.Elevation
+	Next
+End Sub
+
+
+
+
+
+
+
+Private Sub SwiftMap_Click
+	Dim p As PhoneIntents
+	StartActivity(p.OpenBrowser("https://www.google.com/maps/@?api=1&map_action=map&hl=es-419"))
+End Sub
+
+Private Sub lblMap_Click
+	Dim p As PhoneIntents
+	StartActivity(p.OpenBrowser("https://www.google.com/maps/@?api=1&map_action=map&hl=es-419"))
+End Sub
+
+'..........................................................
+Public Sub SetState
+	'Switch1.Enabled = Starter.connect
+	btnConnect.Enabled = Not(Starter.connected)
+	progressBar1.Visible = Starter.connecting
+	Dim status As String
+	If Starter.connected Then
+		status = "connected"
+		
+		'Switch1.Checked=True
+	else if Starter.connecting Then
+		status = "connecting"
+		lblStatus.Color=232
+	Else
+		status = "disconnected"
+		'Switch1.Checked=False
+		lblStatus.Color=325
+	End If
+	lblStatus.Text = $" ${status}"$
+	
+End Sub
+
+Public Sub SetDesconectar
+	progressBar1.Visible = Starter.connected
+End Sub
+
+Public Sub MessageFromDevice(msg As String)
+	Dim NivelBat= Round2(msg/5*100,0) As Int
+	
+	lblMessage.Text="BATTERY LEVEL "&CRLF&NivelBat &" %"
+	Log(lblMessage.Text)
+	Log(msg)
+	
+	
+End Sub
+
+
+
+
+'Sub Switch1_CheckedChange(Checked As Boolean)
+'	Dim b As Byte
+'	If Checked Then b = 1 Else b = 0
+'	Log(Checked)
+'	CallSub2(Starter, "SendMessage", Array As Byte(0, b))
+'End Sub
+
+Sub btnConnect_Click
+	rp.CheckAndRequest(rp.PERMISSION_ACCESS_COARSE_LOCATION)
+	Log("Esperando")
+	Wait For Activity_PermissionResult (Permission As String, Result As Boolean)
+	If Result Then
+		CallSub(Starter, "Connect")
+	'	progressBar2.Progress=4
+	Else
+		ToastMessageShow("No permission", True)
+	End If
+End Sub
+
+
+Private Sub B4XSwitch1_ValueChanged (Value As Boolean)
+	If Value=True Then 
+		rp.CheckAndRequest(rp.PERMISSION_ACCESS_COARSE_LOCATION)
+		Log("Esperando")
+		Wait For Activity_PermissionResult (Permission As String, Result As Boolean)
+		If Result Then
+			CallSub(Starter, "Connect")
+		Else
+			ToastMessageShow("No permission", True)
+		End If
+	Else
+		Starter.connected=False
+		Log("desconectado")
+		SetDesconectar
+		CallSub(Starter, "disConnect")
+	End If	
+		
+End Sub
+
+
+
+' Grabar audio al pulsar el botón de grabar
+Sub recButton_Click
+    audioStreamer.StartRecording ' Inicia la grabación de audio
+    filterLabel.Text = "Grabando..."
+End Sub
+
+' Detener la grabación al pulsar el botón de detener
+Sub stopButton_Click
+    audioStreamer.StopRecording ' Detiene la grabación
+    filterLabel.Text = "Grabación detenida"
+End Sub
+
+' Manejo de los eventos del AudioStreamer (si es necesario)
+Sub audioStreamer_RecordBuffer (Buffer() As Byte)
+    ' Aquí es donde puedes procesar manualmente el audio grabado (Buffer)
+    ' Aplicar procesamiento simple como filtros manuales o efectos.
+    
+    ' Por ejemplo, podrías aplicar un filtrado básico de ruido:
+    ' Aquí se podría implementar una rutina de procesamiento de audio en tiempo real
+    ' Si tienes una librería externa para reducción de ruido o ecualización, podrías aplicarlo aquí
+End Sub
+
+
+Private Sub BtnChat_Click
+	Dim p As PhoneIntents
+	StartActivity(p.OpenBrowser("https://chatgpt.com/share/678fb915-d3d0-8006-ac60-aeb54a0efa2e"))
+
+End Sub
+
+Private Sub BtnLogo_Click
+	Dim t As PhoneIntents
+	StartActivity(t.OpenBrowser("https://ridepetal.com/"))
+
+End Sub

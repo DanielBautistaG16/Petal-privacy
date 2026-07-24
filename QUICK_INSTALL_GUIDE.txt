@@ -1,0 +1,63 @@
+🚀 INSTALACIÓN RÁPIDA - PETAL HANDSFREE
+
+==================================================
+📧 ARCHIVO PARA ENVIAR POR GMAIL/WHATSAPP:
+==================================================
+
+/home/dani/Petal/PetalApp-Android-READY.tar.gz
+
+==================================================
+🎯 QUE HACER EN TU MÓVIL:
+==================================================
+
+OPCIÓN A - SI TIENES ANDROID STUDIO:
+1. Descargar el archivo .tar.gz
+2. Extraer en tu PC/Mac
+3. Abrir Android Studio > Open Project
+4. Build > Build APK
+5. Instalar APK en móvil
+
+OPCIÓN B - SIN ANDROID STUDIO:
+1. Subir el .tar.gz a: https://ide.goorm.io/
+2. Compilar online
+3. Descargar APK
+4. Instalar en móvil
+
+OPCIÓN C - PEDIR AYUDA:
+1. Enviar .tar.gz a amigo con Android Studio
+2. Que compile la APK
+3. Te envía la APK ya compilada
+4. Instalar directo en móvil
+
+==================================================
+📱 INSTALAR APK EN MÓVIL:
+==================================================
+
+1. Ajustes > Seguridad > "Fuentes desconocidas" ✅
+2. Descargar APK
+3. Tocar archivo > Instalar
+4. Conceder permisos:
+   - Micrófono ✅
+   - Llamadas ✅  
+   - Ubicación ✅
+   - Notificaciones ✅
+5. ¡LISTO!
+
+==================================================
+🎤 COMANDOS PARA PROBAR:
+==================================================
+
+"Batería" → Dice nivel de batería
+"¿Qué hora es?" → Dice la hora
+"Ir a Valencia" → Abre Google Maps
+"¿Cómo está el tráfico?" → Consulta Gemini
+
+==================================================
+✅ TU API KEY YA ESTÁ CONFIGURADA:
+==================================================
+
+AIzaSyA2YHSeiSyOhDcagX-p6nK138qYU0dgJao
+
+¡NO NECESITAS CAMBIAR NADA!
+
+==================================================

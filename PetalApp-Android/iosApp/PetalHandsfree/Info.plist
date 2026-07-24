@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDisplayName</key>
+	<string>Petal</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>UILaunchScreen</key>
+	<dict/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+
+	<!-- Voice command capture (push-to-talk) -->
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Petal necesita acceso al micrófono para escuchar tus comandos de voz.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Petal usa reconocimiento de voz para entender tus comandos y responderte.</string>
+
+	<!-- Reserved for phase 2 (calling contacts by name) -->
+	<key>NSContactsUsageDescription</key>
+	<string>Petal puede buscar contactos para realizar llamadas por voz.</string>
+
+	<!-- Required for canOpenURL() to detect Google Maps / Waze for navigation intents -->
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>comgooglemaps</string>
+		<string>waze</string>
+	</array>
+</dict>
+</plist>

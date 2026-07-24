@@ -1,0 +1,162 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+    // Firebase
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+}
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localProperties.load(new FileInputStream(localPropertiesFile))
+}
+
+android {
+    namespace 'com.petal.handsfree'
+    compileSdk 36
+    // Pin build-tools to a known-good version to avoid AGP picking a stale/corrupt one
+    // installed on the developer's SDK (a 33.0.1 with missing aapt.exe was the culprit).
+    // Must be at least 34.0.0 to match compileSdk 34+. Update freely.
+    buildToolsVersion = "34.0.0"
+
+    signingConfigs {
+        release {
+            storeFile file(localProperties.getProperty('RELEASE_STORE_FILE', ''))
+            storePassword localProperties.getProperty('RELEASE_STORE_PASSWORD', '')
+            keyAlias localProperties.getProperty('RELEASE_KEY_ALIAS', '')
+            keyPassword localProperties.getProperty('RELEASE_KEY_PASSWORD', '')
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.petal.handsfree"
+        minSdk 26
+        targetSdk 35
+        versionCode 8
+        versionName "2.6.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // Build config fields
+        buildConfigField "String", "GEMINI_API_KEY", "\"${localProperties.getProperty('GEMINI_API_KEY', 'ADD_YOUR_KEY_HERE')}\""
+        buildConfigField "String", "GEMINI_BASE_URL", "\"https://generativelanguage.googleapis.com/v1beta/models/\""
+        buildConfigField "String", "SPOTIFY_CLIENT_ID", "\"${localProperties.getProperty('SPOTIFY_CLIENT_ID', '')}\""
+        buildConfigField "String", "SPOTIFY_CLIENT_SECRET", "\"${localProperties.getProperty('SPOTIFY_CLIENT_SECRET', '')}\""
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+            versionNameSuffix "-debug"
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+        freeCompilerArgs += [
+            "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+            "-opt-in=kotlinx.coroutines.FlowPreview"
+        ]
+    }
+
+    buildFeatures {
+        viewBinding true
+        buildConfig true
+    }
+
+    packaging {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+        // Vosk model files must NOT be compressed in the APK,
+        // otherwise model loading fails or is much slower.
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
+
+    // Keep Vosk model assets uncompressed so Vosk can mmap them.
+    androidResources {
+        // All Vosk model extensions must be STORED (not DEFLATED) so
+        // StorageService.unpack() can call AssetManager.openFd() on them.
+        // openFd() throws IOException on compressed assets → model load fails.
+        noCompress += ['mdl', 'fst', 'txt', 'conf', 'int', 'dubm', 'ie', 'mat', 'stats']
+    }
+}
+
+dependencies {
+    // Shared KMP module (logic reused between Android and iOS)
+    implementation project(':shared')
+
+    // Core Android libraries
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // Jetpack Lifecycle components
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.7.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.7.0'
+    implementation 'androidx.lifecycle:lifecycle-service:2.7.0'
+
+    // Activity and Fragment KTX
+    implementation 'androidx.activity:activity-ktx:1.8.2'
+    implementation 'androidx.fragment:fragment-ktx:1.6.2'
+
+    // Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
+
+    // Vosk - offline continuous speech recognition (used for wake word "Oye Petal")
+    // Model is shipped under app/src/main/assets/model-es/
+    implementation 'com.alphacephei:vosk-android:0.3.47@aar'
+    implementation 'net.java.dev.jna:jna:5.13.0@aar'
+
+    // Google Play Services
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+    implementation 'com.google.android.gms:play-services-maps:18.2.0'
+
+    // Permissions handling
+    implementation 'androidx.activity:activity-ktx:1.8.2'
+    
+    // Work Manager (for background tasks)
+    implementation 'androidx.work:work-runtime-ktx:2.9.0'
+
+    // Notification utilities
+    implementation 'androidx.core:core-ktx:1.12.0'
+
+    // Firebase
+    implementation platform('com.google.firebase:firebase-bom:33.1.0')
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    // implementation 'com.google.firebase:firebase-messaging-ktx'    // future: push notifications
+    // implementation 'com.google.firebase:firebase-firestore-ktx'    // future: cloud sync
+
+    // Future: Room database
+    // implementation 'androidx.room:room-runtime:2.6.1'
+    // implementation 'androidx.room:room-ktx:2.6.1'
+    // kapt 'androidx.room:room-compiler:2.6.1'
+
+    // Testing dependencies
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.mockito:mockito-core:5.8.0'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3'
+    
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.5.1'
+}

@@ -1,0 +1,50 @@
+# Android
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+bin/
+gen/
+out/
+build/
+.gradle/
+*.iml
+*.jks
+*.keystore
+local.properties
+google-services.json
+
+# Secrets and config
+keystore/
+apk-ready/
+PetalApp-Android/apk-ready/
+
+# Archives
+*.tar.gz
+*.zip
+
+# IDE
+.idea/
+*.DS_Store
+Thumbs.db
+.vscode/
+
+# Zone identifiers (Windows)
+*:Zone.Identifier
+
+# Vosk model (large binary — check in separately or via LFS if needed)
+# vosk-model-small-es-0.42/
+/vosk-model-small-es-0.42/
+
+# Local toolchain installs (large, machine-specific — not part of the repo)
+PetalApp-Android/gradle-8.5/
+PetalApp-Android/jdk/
+
+# Claude Code scratch worktrees (tool-generated, not project content)
+.claude/worktrees/
+
+# iOS (XcodeGen-generated project + build-time secrets — never checked in)
+PetalApp-Android/iosApp/*.xcodeproj
+PetalApp-Android/iosApp/PetalHandsfree/GeneratedSecrets.swift
+PetalApp-Android/shared/build/

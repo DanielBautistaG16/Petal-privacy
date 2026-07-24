@@ -1,0 +1,47 @@
+name: PetalHandsfree
+options:
+  bundleIdPrefix: com.petal
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    IPHONEOS_DEPLOYMENT_TARGET: "16.0"
+
+targets:
+  PetalHandsfree:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: PetalHandsfree
+        excludes:
+          - "GeneratedSecrets.swift.example"
+    info:
+      path: PetalHandsfree/Info.plist
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.petal.handsfree
+        PRODUCT_NAME: PetalHandsfree
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        TARGETED_DEVICE_FAMILY: "1"
+        # embedAndSignAppleFrameworkForXcode (run below) copies the KMP
+        # `shared.framework` here before Swift sources are compiled.
+        FRAMEWORK_SEARCH_PATHS:
+          - "$(inherited)"
+          - "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)"
+    preBuildScripts:
+      - name: Generate Secrets
+        script: |
+          set -e
+          "${SRCROOT}/Scripts/generate_secrets.sh"
+        basedOnDependencyAnalysis: false
+      - name: Compile & Embed Kotlin Shared Framework
+        script: |
+          set -e
+          cd "${SRCROOT}/.."
+          ./gradlew :shared:embedAndSignAppleFrameworkForXcode
+        basedOnDependencyAnalysis: false

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Info -->
+    <string name="app_name">Petal Handsfree</string>
+    <string name="app_subtitle">Your intelligent cycling assistant</string>
+    <string name="app_icon">Petal logo</string>
+    <string name="petal_logo_description">Petal logo</string>
+
+    <!-- Service Status -->
+    <string name="service_status">Status</string>
+    <string name="service_active">Petal is active</string>
+    <string name="service_inactive">Petal is paused</string>
+    <string name="service_active_body">Enjoy the ride. I\'m listening.</string>
+    <string name="service_inactive_body">Ready when you are</string>
+    <string name="service_starting">Petal is starting…</string>
+    <string name="service_just_moment">Just a moment</string>
+
+    <!-- Buttons -->
+    <string name="start_service">Start talking to onboard AI</string>
+    <string name="stop_service">Stop</string>
+    <string name="stolen_bike_alert">My bike has been stolen</string>
+    <string name="petal_ride_handsfree">Petal Ride Hands Free</string>
+    <string name="locate_petal">Locate Petal</string>
+    <string name="petal_bike_description">Petal bicycle</string>
+    <string name="mic_label_stop">Stop</string>
+    <string name="mic_label_start">Activate</string>
+    <string name="app_settings">Settings</string>
+    <string name="help">Help &amp; Support</string>
+    <string name="visit_petal_website">Petal Web</string>
+    <string name="optimize_settings">Optimize Settings</string>
+
+    <!-- Language Toggle -->
+    <string name="language_toggle">ES</string>
+
+    <!-- Text Input Card -->
+    <string name="write_command">Write a command</string>
+    <string name="write_command_hint">E.g.: I\'m hungry, recommend a route…</string>
+    <string name="write_command_send">Send</string>
+    <string name="write_command_tip">Write commands without \'Petal\' at the start</string>
+
+    <!-- Battery Optimization -->
+    <string name="battery_optimization_title">For uninterrupted performance</string>
+    <string name="battery_optimization_body">We recommend disabling battery optimization to keep Petal active while cycling.</string>
+
+    <!-- Theft Alert Modal -->
+    <string name="theft_alert_title">Alert: Bicycle Theft</string>
+    <string name="theft_alert_body">You\'re about to open AlertCops to report a stolen bicycle.\n\nThis will:\n• Open the AlertCops app\n• Share your location\n• Contact authorities</string>
+    <string name="open_alertcops">Open AlertCops</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- Footer -->
+    <string name="footer_learn_more">Learn more about Petal</string>
+    <string name="footer_website">ridepetal.com</string>
+
+    <!-- Toast Messages -->
+    <string name="toast_service_started">Petal is now active</string>
+    <string name="toast_service_stopped">Petal is paused</string>
+    <string name="toast_opening_alertcops">Opening AlertCops…</string>
+    <string name="toast_permissions_required">Permissions required</string>
+    <string name="toast_opening_website">Opening Petal website</string>
+    <string name="toast_write_command_empty">Write a command first</string>
+    <string name="toast_service_not_running">Start the service first</string>
+    <string name="toast_processing">Processing: %s</string>
+
+    <!-- Permissions -->
+    <string name="permission_needed">Permissions needed to continue</string>
+    <string name="microphone_permission_needed">Microphone access required for voice recognition</string>
+    <string name="mic_permission_required">Microphone permission is required for the voice service.</string>
+    <string name="call_permission_needed">Phone access required to make calls</string>
+    <string name="location_permission_needed">Location access required for navigation</string>
+    <string name="contacts_permission_needed">Contacts access required to call by name</string>
+
+    <!-- TTS Responses -->
+    <string name="tts_initializing">Starting voice assistant</string>
+    <string name="tts_ready">Petal is ready. I\'m listening.</string>
+    <string name="tts_listening">Listening</string>
+    <string name="tts_processing">Processing</string>
+    <string name="tts_error">Sorry, something went wrong</string>
+    <string name="tts_unknown_command">Sorry, I didn\'t understand you</string>
+
+    <!-- Notifications -->
+    <string name="notification_title">Petal Handsfree</string>
+    <string name="notification_text_active">Active — Listening for commands</string>
+    <string name="notification_text_listening">Listening…</string>
+    <string name="notification_text_processing">Processing command</string>
+
+    <!-- Error Messages -->
+    <string name="error_speech_recognition">Voice recognition error</string>
+    <string name="error_network">Network connection issue</string>
+    <string name="error_permissions">Required permissions not granted</string>
+    <string name="error_tts_init">Voice synthesis initialization error</string>
+    <string name="error_call_failed">Unable to place call</string>
+    <string name="error_navigation_failed">Unable to open navigation</string>
+    <string name="error_rate_limit">The assistant is busy. Try again in a few seconds.</string>
+    <string name="error_critical_permissions">Critical permissions denied. The app cannot work without them.</string>
+
+    <!-- Help Dialog -->
+    <string name="help_title">Help &amp; Support</string>
+    <string name="help_commands_title">Voice Commands</string>
+    <string name="help_commands_body">You can say:\n• \"Call María\"\n• \"Navigate to Valencia Centre\"\n• \"What time is it?\"\n• \"Battery status\"</string>
+    <string name="help_tips_title">Performance Tips</string>
+    <string name="help_tips_body">• Disable battery optimization\n• Grant all permissions\n• Use in quiet environments</string>
+    <string name="help_contact_title">Need Help?</string>
+    <string name="help_contact_email">support@ridepetal.com</string>
+    <string name="help_understood">Got it</string>
+
+    <!-- Call Handler -->
+    <string name="calling_number">Calling %s</string>
+    <string name="calling_contact">Calling %s</string>
+    <string name="invalid_phone_number">Invalid phone number</string>
+    <string name="contact_not_found">Could not find %s in your contacts</string>
+    <string name="call_permission_denied">Phone permission required</string>
+
+    <!-- Navigation Handler -->
+    <string name="navigating_to">Navigating to %s in bike mode</string>
+    <string name="navigation_app_not_found">Maps app not found</string>
+    <string name="invalid_destination">Please specify a destination</string>
+
+    <!-- Battery Info -->
+    <string name="battery_level">Battery level is %d percent</string>
+    <string name="battery_error">Unable to check battery level</string>
+
+    <!-- Time Info -->
+    <string name="current_time">It\'s %s</string>
+    <string name="time_error">Unable to get current time</string>
+
+    <!-- Voice Processing -->
+    <string name="processing_command">Processing: \"%s\"</string>
+    <string name="command_not_recognized">Sorry, I didn\'t understand you</string>
+    <string name="gemini_api_error">Unable to connect to assistant</string>
+
+    <!-- Test Buttons (Development) -->
+    <string name="test_call">Test Call</string>
+    <string name="test_navigation">Test Navigation</string>
+
+    <!-- Accessibility -->
+    <string name="mic_button_description">Microphone control</string>
+    <string name="service_status_description">Service status indicator</string>
+    <string name="battery_icon_description">Battery optimization</string>
+    <string name="warning_icon_description">Alert</string>
+</resources>

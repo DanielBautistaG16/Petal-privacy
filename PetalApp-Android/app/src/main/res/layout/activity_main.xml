@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_secondary"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <!-- ===== MAIN SCREEN ===== -->
+
+            <!-- Petal Logo (clickable - opens website) -->
+            <ImageView
+                android:id="@+id/ivPetalLogo"
+                android:layout_width="220dp"
+                android:layout_height="90dp"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/petal_logo"
+                android:scaleType="fitCenter"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="@string/petal_logo_description" />
+
+            <!-- Status text below logo -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:paddingBottom="4dp">
+
+                <View
+                    android:id="@+id/statusDot"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:background="@drawable/status_dot_inactive"
+                    android:layout_marginEnd="8dp" />
+
+                <TextView
+                    android:id="@+id/tvServiceStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/service_inactive"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@color/text_primary" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvServiceBody"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/service_inactive_body"
+                android:textSize="12sp"
+                android:textColor="@color/text_secondary"
+                android:layout_marginBottom="48dp" />
+
+            <!-- ===== CENTRAL STATE INDICATOR ===== -->
+            <FrameLayout
+                android:id="@+id/viewStateIndicator"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="32dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:background="@drawable/indicator_listening"
+                android:contentDescription="@string/mic_button_description">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:id="@+id/ivMicIcon"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_mic"
+                        android:scaleType="fitCenter"
+                        android:contentDescription="@null"
+                        app:tint="@color/text_secondary" />
+
+                    <TextView
+                        android:id="@+id/tvMicLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/state_listening"
+                        android:textSize="13sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginTop="6dp"
+                        android:gravity="center" />
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+            <!-- ===== TWO RECTANGULAR BUTTONS BELOW ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="32dp"
+                android:paddingEnd="32dp"
+                android:layout_marginTop="40dp">
+
+                <!-- Red: Stolen bike -->
+                <Button
+                    android:id="@+id/btnStolenBike"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/stolen_bike_alert"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_on_primary"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-medium"
+                    android:background="@drawable/button_dark_red"
+                    android:stateListAnimator="@null"
+                    android:elevation="0dp"
+                    android:gravity="center" />
+
+                <!-- Blue: Locate Petal -->
+                <Button
+                    android:id="@+id/btnLocatePetal"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/locate_petal"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_on_primary"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-medium"
+                    android:background="@drawable/button_locate_petal"
+                    android:stateListAnimator="@null"
+                    android:elevation="0dp"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+            <!-- ===== HIDDEN FEATURES (kept for future use) ===== -->
+
+            <!-- Text Input Card (visible for testing) -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardTextInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="visible"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="1dp"
+                app:cardBackgroundColor="@color/card_background">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/write_command"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/text_primary"
+                        android:layout_marginBottom="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <EditText
+                            android:id="@+id/etTextCommand"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:hint="@string/write_command_hint"
+                            android:textSize="14sp"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_tertiary"
+                            android:background="@drawable/button_premium_secondary"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:inputType="text"
+                            android:imeOptions="actionSend"
+                            android:maxLines="1" />
+
+                        <Button
+                            android:id="@+id/btnSendCommand"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="8dp"
+                            android:text="@string/write_command_send"
+                            android:textSize="14sp"
+                            android:textColor="@color/text_on_primary"
+                            android:textStyle="bold"
+                            android:fontFamily="sans-serif-medium"
+                            android:background="@drawable/button_premium_primary"
+                            android:stateListAnimator="@null"
+                            android:elevation="0dp"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/write_command_tip"
+                        android:textSize="11sp"
+                        android:textColor="@color/text_tertiary"
+                        android:layout_marginTop="6dp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Battery Optimization Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/tvBatteryWarning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="1dp"
+                app:cardBackgroundColor="@color/card_background">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/battery_optimization_title"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/text_primary"
+                        android:layout_marginBottom="6dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/battery_optimization_body"
+                        android:textSize="13sp"
+                        android:lineSpacingMultiplier="1.3"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="12dp" />
+
+                    <Button
+                        android:id="@+id/btnBatteryOptimization"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="@string/optimize_settings"
+                        android:textSize="13sp"
+                        android:textColor="@color/petal_blue"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-medium"
+                        android:background="@drawable/button_premium_secondary"
+                        android:stateListAnimator="@null"
+                        android:elevation="0dp"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Secondary action buttons (hidden - kept for future use) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/btnSettings"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/app_settings"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_primary"
+                    android:textStyle="normal"
+                    android:fontFamily="sans-serif"
+                    android:background="@drawable/button_premium_secondary"
+                    android:stateListAnimator="@null"
+                    android:elevation="0dp"
+                    android:gravity="center" />
+
+                <Button
+                    android:id="@+id/btnHelp"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/help"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_primary"
+                    android:textStyle="normal"
+                    android:fontFamily="sans-serif"
+                    android:background="@drawable/button_premium_secondary"
+                    android:stateListAnimator="@null"
+                    android:elevation="0dp"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+            <!-- Footer + Language Toggle (hidden - kept for future use) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/btnLanguageToggle"
+                    android:layout_width="44dp"
+                    android:layout_height="32dp"
+                    android:text="@string/language_toggle"
+                    android:textSize="11sp"
+                    android:textColor="@color/text_secondary"
+                    android:textStyle="bold"
+                    android:background="@drawable/button_premium_secondary"
+                    android:stateListAnimator="@null"
+                    android:elevation="0dp"
+                    android:padding="0dp"
+                    android:gravity="center" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/footer_learn_more"
+                        android:textSize="11sp"
+                        android:textColor="@color/text_tertiary"
+                        android:alpha="0.7" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/footer_website"
+                        android:textSize="11sp"
+                        android:textColor="@color/text_tertiary"
+                        android:alpha="0.7" />
+
+                </LinearLayout>
+
+                <!-- Spacer to balance the language button -->
+                <View
+                    android:layout_width="44dp"
+                    android:layout_height="1dp" />
+
+            </LinearLayout>
+
+            <!-- Spacer: pushes footer to bottom -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <!-- Footer: ridepetal.com -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/footer_website"
+                android:textSize="11sp"
+                android:textColor="@color/text_tertiary"
+                android:alpha="0.5"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Hidden: Service status card (kept for binding compatibility) -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardServiceInfo"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/card_background" />
+
+            <!-- Test Buttons (Development - hidden) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <Button
+                    android:id="@+id/btnTestCall"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/test_call"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_secondary"
+                    android:background="@drawable/button_premium_secondary" />
+
+                <Button
+                    android:id="@+id/btnTestNavigation"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/test_navigation"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_secondary"
+                    android:background="@drawable/button_premium_secondary" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

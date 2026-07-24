@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Petal Feature Graphic</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1024px;
+      height: 500px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1E40AF 0%, #2563EB 60%, #3B82F6 100%);
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 60px;
+    }
+    .left {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
+    }
+    .app-name {
+      font-size: 64px;
+      font-weight: 900;
+      color: white;
+      letter-spacing: -2px;
+      font-style: italic;
+    }
+    .tagline {
+      font-size: 20px;
+      color: rgba(255,255,255,0.92);
+      line-height: 1.4;
+      max-width: 340px;
+    }
+    .features {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .feature {
+      font-size: 16px;
+      color: rgba(255,255,255,0.85);
+    }
+    .screens {
+      display: flex;
+      gap: 16px;
+      align-items: flex-end;
+      height: 460px;
+    }
+    .screen {
+      height: 420px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+    .screen img {
+      height: 100%;
+      width: auto;
+      display: block;
+    }
+    .screen:first-child {
+      transform: rotate(-3deg) translateY(10px);
+    }
+    .screen:last-child {
+      transform: rotate(3deg) translateY(10px);
+    }
+  </style>
+</head>
+<body>
+  <div class="left">
+    <div class="app-name">petal</div>
+    <div class="tagline">Tu asistente de voz<br>manos libres para<br>ciclistas</div>
+    <div class="features">
+      <div class="feature">🗺️ Navegación por voz</div>
+      <div class="feature">📞 Llamadas manos libres</div>
+      <div class="feature">📍 Lugares cercanos</div>
+    </div>
+  </div>
+  <div class="screens">
+    <div class="screen">
+      <img src="../captura petalapp 1.jpeg" alt="Petal activo">
+    </div>
+    <div class="screen">
+      <img src="../captura Petalapp 2.jpeg" alt="Petal en pausa">
+    </div>
+  </div>
+</body>
+</html>

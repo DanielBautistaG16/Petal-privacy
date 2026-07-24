@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Info -->
+    <string name="app_name">Petal Handsfree</string>
+    <string name="app_subtitle">Tu asistente inteligente para ciclismo</string>
+    <string name="app_icon">Logo de Petal</string>
+    <string name="petal_logo_description">Logo de Petal</string>
+
+    <!-- Service Status -->
+    <string name="service_status">Estado</string>
+    <string name="service_active">Petal está activo</string>
+    <string name="service_inactive">Petal está en pausa</string>
+    <string name="service_active_body">Di «Oye Petal» para activarme</string>
+    <string name="service_inactive_body">Listo cuando tú quieras</string>
+
+    <!-- Voice State Indicator -->
+    <string name="state_listening">Di «Oye Petal»</string>
+    <string name="state_wake_word">Escuchando…</string>
+    <string name="state_processing">Procesando…</string>
+    <string name="service_starting">Petal está iniciando…</string>
+    <string name="service_just_moment">Un momento</string>
+
+    <!-- Buttons -->
+    <string name="start_service">Hablar con la IA</string>
+    <string name="stop_service">Stop</string>
+    <string name="stolen_bike_alert">Me han robado la bici</string>
+    <string name="petal_ride_handsfree">Petal Ride Hands Free</string>
+    <string name="locate_petal">Localizar Petal</string>
+    <string name="petal_bike_description">Bicicleta Petal</string>
+    <string name="mic_label_stop">Detener</string>
+    <string name="mic_label_start">Activar</string>
+    <string name="app_settings">Configuración</string>
+    <string name="help">Ayuda y soporte</string>
+    <string name="visit_petal_website">Web Petal</string>
+    <string name="optimize_settings">Optimizar ajustes</string>
+
+    <!-- Language Toggle -->
+    <string name="language_toggle">EN</string>
+
+    <!-- Text Input Card -->
+    <string name="write_command">Escribe un comando</string>
+    <string name="write_command_hint">Ej: tengo hambre, recomiéndame una ruta…</string>
+    <string name="write_command_send">Enviar</string>
+    <string name="write_command_tip">Escribe comandos sin \'Petal\' al inicio</string>
+
+    <!-- Battery Optimization -->
+    <string name="battery_optimization_title">Para un rendimiento ininterrumpido</string>
+    <string name="battery_optimization_body">Recomendamos desactivar la optimización de batería para mantener Petal activo mientras pedaleas.</string>
+
+    <!-- Theft Alert Modal -->
+    <string name="theft_alert_title">Alerta: Robo de bicicleta</string>
+    <string name="theft_alert_body">Vas a abrir AlertCops para denunciar un robo de bicicleta.\n\nEsto hará:\n• Abrir la app AlertCops\n• Compartir tu ubicación\n• Contactar a las autoridades</string>
+    <string name="open_alertcops">Abrir AlertCops</string>
+    <string name="cancel">Cancelar</string>
+
+    <!-- Footer -->
+    <string name="footer_learn_more">Más información sobre Petal</string>
+    <string name="footer_website">ridepetal.com</string>
+
+    <!-- Toast Messages -->
+    <string name="toast_service_started">Petal está activo</string>
+    <string name="toast_service_stopped">Petal está en pausa</string>
+    <string name="toast_opening_alertcops">Abriendo AlertCops…</string>
+    <string name="toast_permissions_required">Se necesitan permisos</string>
+    <string name="toast_opening_website">Abriendo web de Petal</string>
+    <string name="toast_write_command_empty">Escribe un comando primero</string>
+    <string name="toast_service_not_running">Inicia el servicio primero</string>
+    <string name="toast_processing">Procesando: %s</string>
+
+    <!-- Permissions -->
+    <string name="permission_needed">Se necesitan permisos para continuar</string>
+    <string name="microphone_permission_needed">Se requiere acceso al micrófono para el reconocimiento de voz</string>
+    <string name="mic_permission_required">El permiso de micrófono es necesario para el servicio de voz.</string>
+    <string name="call_permission_needed">Se requiere acceso al teléfono para realizar llamadas</string>
+    <string name="location_permission_needed">Se requiere acceso a la ubicación para la navegación</string>
+    <string name="contacts_permission_needed">Se requiere acceso a los contactos para llamar por nombre</string>
+
+    <!-- TTS Responses -->
+    <string name="tts_initializing">Iniciando asistente de voz</string>
+    <string name="tts_ready">Petal está listo. Estoy escuchando.</string>
+    <string name="tts_listening">Escuchando</string>
+    <string name="tts_processing">Procesando</string>
+    <string name="tts_error">Lo siento, algo salió mal</string>
+    <string name="tts_unknown_command">Lo siento, no te he entendido</string>
+
+    <!-- Notifications -->
+    <string name="notification_title">Petal Handsfree</string>
+    <string name="notification_text_active">Activo — Escuchando comandos</string>
+    <string name="notification_text_listening">Escuchando…</string>
+    <string name="notification_text_processing">Procesando comando</string>
+
+    <!-- Error Messages -->
+    <string name="error_speech_recognition">Error en el reconocimiento de voz</string>
+    <string name="error_network">Problema de conexión de red</string>
+    <string name="error_permissions">No se concedieron los permisos necesarios</string>
+    <string name="error_tts_init">Error al iniciar la síntesis de voz</string>
+    <string name="error_call_failed">No se pudo realizar la llamada</string>
+    <string name="error_navigation_failed">No se pudo abrir la navegación</string>
+    <string name="error_rate_limit">El asistente está ocupado. Inténtalo de nuevo en unos segundos.</string>
+    <string name="error_critical_permissions">Permisos críticos denegados. La aplicación no puede funcionar sin ellos.</string>
+
+    <!-- Help Dialog -->
+    <string name="help_title">Ayuda y soporte</string>
+    <string name="help_commands_title">Comandos de voz</string>
+    <string name="help_commands_body">Puedes decir:\n• \"Llama a María\"\n• \"Navega al Centro de Valencia\"\n• \"¿Qué hora es?\"\n• \"Estado de batería\"</string>
+    <string name="help_tips_title">Consejos de rendimiento</string>
+    <string name="help_tips_body">• Desactiva la optimización de batería\n• Concede todos los permisos\n• Úsalo en entornos tranquilos</string>
+    <string name="help_contact_title">¿Necesitas ayuda?</string>
+    <string name="help_contact_email">support@ridepetal.com</string>
+    <string name="help_understood">Entendido</string>
+
+    <!-- Call Handler -->
+    <string name="calling_number">Llamando a %s</string>
+    <string name="calling_contact">Llamando a %s</string>
+    <string name="invalid_phone_number">Número de teléfono no válido</string>
+    <string name="contact_not_found">No encontré a %s en tus contactos</string>
+    <string name="call_permission_denied">Se necesita permiso de teléfono</string>
+
+    <!-- Navigation Handler -->
+    <string name="navigating_to">Navegando a %s en modo bicicleta</string>
+    <string name="navigation_app_not_found">No se encontró la app de mapas</string>
+    <string name="invalid_destination">Por favor, indica un destino</string>
+
+    <!-- Battery Info -->
+    <string name="battery_level">El nivel de batería es del %d por ciento</string>
+    <string name="battery_error">No se pudo comprobar el nivel de batería</string>
+
+    <!-- Time Info -->
+    <string name="current_time">Son las %s</string>
+    <string name="time_error">No se pudo obtener la hora actual</string>
+
+    <!-- Voice Processing -->
+    <string name="processing_command">Procesando: \"%s\"</string>
+    <string name="command_not_recognized">Lo siento, no te he entendido</string>
+    <string name="gemini_api_error">No se pudo conectar al asistente</string>
+
+    <!-- VoiceProcessor — user-facing response strings -->
+    <string name="command_not_recognized_hint">Lo siento, no te he entendido. Puedes decir: llévame a, llama a, busca, o pregúntame la hora.</string>
+    <string name="error_processing_command">Hubo un error procesando tu comando.</string>
+    <string name="voice_ask_who_to_call">¿A quién quieres llamar?</string>
+    <string name="error_call_no_permission">No pude iniciar la llamada. Revisa los permisos.</string>
+    <string name="error_call_generic">Error al intentar hacer la llamada.</string>
+    <string name="voice_ask_destination">¿Adónde quieres ir?</string>
+    <string name="navigating_bike">Abriendo ruta en bici hacia %s</string>
+    <string name="error_navigation_no_app">No pude abrir la navegación. ¿Tienes Google Maps?</string>
+    <string name="voice_ask_search_query">¿Qué quieres buscar?</string>
+    <string name="searching_in_maps">Buscando %s en Google Maps</string>
+    <string name="searching_result">Buscando %s</string>
+    <string name="error_search_failed">No pude realizar la búsqueda.</string>
+
+    <!-- Test Buttons (Development) -->
+    <string name="test_call">Probar llamada</string>
+    <string name="test_navigation">Probar navegación</string>
+
+    <!-- Accessibility -->
+    <string name="mic_button_description">Control del micrófono</string>
+    <string name="service_status_description">Indicador de estado del servicio</string>
+    <string name="battery_icon_description">Optimización de batería</string>
+    <string name="warning_icon_description">Alerta</string>
+</resources>

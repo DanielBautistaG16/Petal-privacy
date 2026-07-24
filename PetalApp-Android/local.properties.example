@@ -1,0 +1,18 @@
+# Copy this file to local.properties and fill in your values.
+# local.properties is gitignored and must never be committed.
+
+# Android SDK path (set automatically by Android Studio)
+sdk.dir=/path/to/Android/Sdk
+
+# Gemini API key — https://aistudio.google.com/app/apikey
+GEMINI_API_KEY=
+
+# Spotify API credentials — https://developer.spotify.com/dashboard
+SPOTIFY_CLIENT_ID=
+SPOTIFY_CLIENT_SECRET=
+
+# Release signing (only needed for assembleRelease)
+RELEASE_STORE_FILE=../keystore/petal-release.jks
+RELEASE_STORE_PASSWORD=
+RELEASE_KEY_ALIAS=
+RELEASE_KEY_PASSWORD=

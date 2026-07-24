@@ -1,0 +1,101 @@
+﻿Build1=Default,anywheresoftware.b4a.samples.gps
+File1=1.bal
+File2=arrive in style header.png
+File3=bici2.jpg
+File4=logobt.jpg
+File5=petal2.png
+File6=search bar.png
+FileGroup1=Default Group
+FileGroup2=Default Group
+FileGroup3=Default Group
+FileGroup4=Default Group
+FileGroup5=Default Group
+FileGroup6=Default Group
+Group=Default Group
+Library1=core
+Library2=gps
+Library3=serial
+Library4=xcustomlistview
+Library5=xui views
+Library6=phone
+ManifestCode=
+NumberOfFiles=6
+NumberOfLibraries=6
+NumberOfModules=0
+Version=12.2
+@EndOfDesignText@
+#Region Module Attributes
+	#FullScreen: true
+	#IncludeTitle: false
+	#ApplicationLabel: PetalBic
+	#VersionCode: 1
+	#VersionName: 
+	#SupportedOrientations: unspecified
+#End Region
+
+Sub Process_Globals
+	Dim GPS1 As GPS
+End Sub
+
+Sub Globals
+	Dim lblLon As Label
+	Dim lblLat As Label
+	Dim lblSpeed As Label
+	Dim lblSatellites As Label
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	If FirstTime Then
+		GPS1.Initialize("GPS")
+	End If
+	Activity.LoadLayout("1")
+End Sub
+
+Sub Activity_Resume
+	If GPS1.GPSEnabled = False Then
+		ToastMessageShow("Please enable the GPS device.", True)
+		StartActivity(GPS1.LocationSettingsIntent) 'Will open the relevant settings screen.
+	Else
+		GPS1.Start(0, 0) 'Listen to GPS with no filters.
+	End If
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+	GPS1.Stop
+End Sub
+
+Sub GPS_LocationChanged (Location1 As Location)
+	lblLat.Text = "Lat = " & Location1.ConvertToMinutes(Location1.Latitude)
+	lblLon.Text = "Lon = " & Location1.ConvertToMinutes(Location1.Longitude)
+'	lblSpeed.Text = "Speed = " & Location1.Speed
+'	lblSpeed.Text = NumberFormat(1.60934*60/25* Location1.Speed,2,0)&" Km/h"
+	lblSpeed.Text = NumberFormat(1.60934*60/25* Location1.Speed,2,0)
+End Sub
+
+Sub GPS_UserEnabled (Enabled As Boolean)
+	ToastMessageShow("GPS device enabled = " & Enabled, True)
+End Sub
+
+Sub GPS_GpsStatus (Satellites As List)
+	lblSatellites.Text = "Satellites:" & CRLF
+	For i = 0 To Satellites.Size - 1
+		Dim Satellite As GPSSatellite
+		Satellite = Satellites.Get(i)
+		lblSatellites.Text = lblSatellites.Text & CRLF & Satellite.Prn & _
+			" " & Satellite.Snr & " " & Satellite.UsedInFix & " " & Satellite.Azimuth _ 
+			& " " & Satellite.Elevation
+	Next
+End Sub
+
+
+
+
+Private Sub SwiftMap_Click
+	Dim p As PhoneIntents
+	StartActivity(p.OpenBrowser("https://www.google.com/maps/@?api=1&map_action=map&hl=es-419"))
+End Sub
+
+Private Sub lblMap_Click
+	Dim p As PhoneIntents
+	StartActivity(p.OpenBrowser("https://www.google.com/maps/@?api=1&map_action=map&hl=es-419"))
+End Sub

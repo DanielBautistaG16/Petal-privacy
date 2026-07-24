@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Premium Petal Brand Palette -->
+
+    <!-- Background Colors -->
+    <color name="background_primary">#F8FAFC</color>
+    <color name="background_secondary">#FFFFFF</color>
+    <color name="card_background">#FFFFFF</color>
+
+    <!-- Brand Colors -->
+    <color name="petal_blue">#2563EB</color>
+    <color name="petal_blue_pressed">#1E40AF</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#0F172A</color>
+    <color name="text_secondary">#64748B</color>
+    <color name="text_tertiary">#94A3B8</color>
+    <color name="text_on_primary">#FFFFFF</color>
+
+    <!-- State Colors -->
+    <color name="success">#16A34A</color>
+    <color name="success_light">#22C55E</color>
+    <color name="success_pressed">#15803D</color>
+    <color name="error">#DC2626</color>
+    <color name="error_pressed">#B91C1C</color>
+    <color name="error_dark">#8B1A1A</color>
+    <color name="error_dark_pressed">#6B1414</color>
+    <color name="warning">#F59E0B</color>
+    <color name="petal_green">#2E7D32</color>
+    <color name="petal_green_pressed">#1B5E20</color>
+    <color name="stop_red">#EF4444</color>
+    <color name="stop_red_pressed">#DC2626</color>
+
+    <!-- Surface Colors -->
+    <color name="surface_elevated">#FFFFFF</color>
+    <color name="surface_disabled">#E2E8F0</color>
+    <color name="divider">#F1F5F9</color>
+
+    <!-- Shadow Colors -->
+    <color name="shadow_light">#0D000000</color>
+    <color name="shadow_medium">#1A000000</color>
+
+    <!-- Transparent -->
+    <color name="transparent">#00000000</color>
+
+    <!-- Launcher Icon -->
+    <color name="ic_launcher_background">#FFFFFF</color>
+
+    <!-- Legacy compatibility (deprecated but kept for safety) -->
+    <color name="colorPrimary">@color/petal_blue</color>
+    <color name="colorPrimaryDark">#1E40AF</color>
+    <color name="colorAccent">@color/petal_blue</color>
+</resources>
