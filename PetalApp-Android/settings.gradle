@@ -6,10 +6,14 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    // PREFER_SETTINGS (not FAIL_ON_PROJECT_REPOS): the Kotlin/Native Gradle
-    // plugin auto-registers a project-level Ivy repo to fetch the K/N compiler
-    // distribution for iOS targets — FAIL_ON_PROJECT_REPOS rejects that outright.
-    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+    // PREFER_PROJECT (not FAIL_ON_PROJECT_REPOS / PREFER_SETTINGS): the
+    // Kotlin/Native Gradle plugin auto-registers a project-level Ivy repo to
+    // download the K/N compiler distribution for the shared module's iOS
+    // targets. FAIL_ON_PROJECT_REPOS rejects it outright; PREFER_SETTINGS
+    // downgrades that to a warning but still ends up ignoring the repo
+    // entirely, so resolving the compiler artifact fails. PREFER_PROJECT
+    // (Gradle's own default) is the mode that actually lets it resolve.
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
     repositories {
         google()
         mavenCentral()
