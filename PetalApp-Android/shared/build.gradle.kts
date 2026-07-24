@@ -26,7 +26,10 @@ kotlin {
             dependencies {
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.kotlinx.serialization.json)
-                implementation(libs.ktor.client.core)
+                // api, not implementation: GeminiClient's public constructor takes
+                // an HttpClient parameter, so consumers (e.g. :app) need this type
+                // on their own compile classpath too.
+                api(libs.ktor.client.core)
                 implementation(libs.ktor.client.content.negotiation)
                 implementation(libs.ktor.serialization.kotlinx.json)
             }
